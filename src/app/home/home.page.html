@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="titulo">
+      Chess
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <div class="logo_usuario">
+      <ion-img src="../assets/logo.png" ></ion-img>
+    </div>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/singup']" expand="block">Registrar</ion-button>
+
+        
+        <ion-text >
+          <h4 id="already">¿Ya tiene usuario?</h4>
+          </ion-text>
+
+        <ion-button [routerLink]="['/login']" expand="block"  >Entrar</ion-button>
+
+        <ion-button [routerLink]="['/menu']" expand="block">menu</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+
+
+</ion-content>

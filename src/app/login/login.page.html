@@ -1,0 +1,32 @@
+
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form>
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
+
+    <ion-text>
+      <p>
+        ¿No tienes cuenta? <a [routerLink]="['/singup']">Regístrate aquí</a>
+      </p>
+      <ion-button expand="full" (click)="goHome()">Volver al Inicio</ion-button>
+
+    </ion-text>
+  </form>
+</ion-content>
