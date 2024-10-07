@@ -8,24 +8,48 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form class="Registrar">
+  <form [formGroup]="ionicForm">
     <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
+      <ion-input class="input" formControlName="name"  placeholder="nombre" ></ion-input>
+      <ion-icon slot="end" name="person-outline"></ion-icon>
+    
+    </ion-item >
+
+    <div *ngIf="this.ionicForm.controls?.['name'].touched && this.ionicForm.controls?.['name'].invalid">
+      <ion-text *ngIf="errorControl.fullname.errors?.required">Se requiere el nombre completo</ion-text>
+    </div>
+
 
     <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <ion-input type="email" required></ion-input>
+      <ion-input class="input" formControlName="email"  placeholder="email" ></ion-input>
+      <ion-icon slot="end" name="person-outline"></ion-icon>
     </ion-item>
+
+    <div *ngIf="this.ionicForm.controls?.['email'].touched && this.ionicForm.controls?.['email'].invalid">
+    <ion-text *ngIf="errorControl.email.errors?.required" >Se requiere un email</ion-text>
+    <ion-text *ngIf="errorControl.email.errors?.pattern" >Es necesario un email valido</ion-text>
+  </div>
 
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input class="input" formControlName="password"  placeholder="password" type="password"></ion-input>
+      <ion-icon slot="end" name="lock-closed-outline"></ion-icon>
     </ion-item>
 
-    <ion-button  type="submit">Registrarse</ion-button>
+    <div *ngIf="this.ionicForm.controls?.['password'].touched && this.ionicForm.controls?.['password'].invalid">
+      <ion-text *ngIf="errorControl.password.errors?.required" >Se requiere una contraseña</ion-text>
+      <ion-text *ngIf="errorControl.password.errors?.pattern" >La contraseña debe tener más de 8 caracteres,
+        al menos una letra mayúscula, 
+        al menos un número.</ion-text>
+    </div>
+    <div class="loginLink">
+      <p class="p">¿Tienes una cuenta? <a [routerLink]="['/login']">Ingresar</a></p>
+    </div>
+
+    <ion-button  type="submit" (click)="singUp()">Registrarse </ion-button>
+
+ 
   </form>
-  <ion-button expand="full" (click)="goHome()">Volver al Inicio</ion-button>
+
+  
 </ion-content>
 

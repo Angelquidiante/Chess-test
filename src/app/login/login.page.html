@@ -8,25 +8,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form>
-    <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <ion-input type="email" required></ion-input>
-    </ion-item>
+  <form [formGroup]="ionicForm"  novalidate>
+    <div class="ion-padding">
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input placeholder="username" formControlName="email" class="input" />
+        <ion-icon name="person-outline"></ion-icon>
+        
+      </ion-item>
+    
+      <div style="padding-top: -26px;padding-bottom: 16px;" *ngIf="this.ionicForm.controls?.['email'].touched && this.ionicForm.controls?.['email'].invalid">
+          <ion-text *ngIf="errorControl.email.errors?.required" class="errorInput" color="danger">Se requiere un email</ion-text>
+          <ion-text *ngIf="errorControl.email.errors?.pattern" class="errorInput" color="danger">Es necesario un email valido</ion-text>
+      </div>
+      <ion-item>
+        <ion-input type="password" placeholder="password" formControlName="password" class="input" />
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+      <div style="padding-top: -26px;padding-bottom: 16px;" *ngIf="this.ionicForm.controls?.['password'].touched && this.ionicForm.controls?.['password'].invalid">
+          <ion-text *ngIf="errorControl.password.errors?.required" class="errorInput" color="danger">Se requiere una contraseña</ion-text>
+          <ion-text *ngIf="errorControl.password.errors?.pattern" class="errorInput"  color="danger">La contraseña debe tener al menos un caracter</ion-text>
+      </div>
+    
+      <div class="forgotpassword">
+        <a [routerLink]="['/forgot-pass']">¿Olvido su contraseña?</a>
+      </div>
 
-    <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
+    </div>
+    <div class="signupLink">
+      <p class="p">¿Nuevo jugador?<a [routerLink]="['/singup']" >Registrese ahora</a></p>
+    </div>
 
-    <ion-text>
-      <p>
-        ¿No tienes cuenta? <a [routerLink]="['/singup']">Regístrate aquí</a>
-      </p>
-      <ion-button expand="full" (click)="goHome()">Volver al Inicio</ion-button>
+    <ion-button  type="submit" (click)="login()">Ingresar </ion-button>
 
-    </ion-text>
   </form>
 </ion-content>
